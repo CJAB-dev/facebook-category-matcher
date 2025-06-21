@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/match-category.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
