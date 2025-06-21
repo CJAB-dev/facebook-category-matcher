@@ -1,1 +1,2 @@
-rapidfuzz
+Flask==2.3.3
+rapidfuzz==3.6.1
