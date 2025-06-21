@@ -1,3 +1,8 @@
+import re
+
+def normalize(text):
+    return re.sub(r"[^\w\s]", "", text.lower().strip())
+
 from http.server import BaseHTTPRequestHandler
 import json
 from rapidfuzz import process, fuzz
@@ -1881,11 +1886,11 @@ class handler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_length)
         data = json.loads(body)
 
-        input_category = data.get("category", "")
+        input_category = normalize(data.get("category", ""))
         match, score, _ = process.extractOne(
             input_category,
             FACEBOOK_CATEGORIES,
-            scorer=fuzz.WRatio
+            scorer=fuzz.token_set_ratio
         )
 
         response = {
